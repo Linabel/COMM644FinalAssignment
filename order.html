@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zesto Pizza</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="order.js"></script> 
+    <link rel="stylesheet" href="styles/styles.css">
+
+     
+</head>
+<body onload="ready()">
+<div class="popup hidden" id="popup">
+    <div class="popup-modal hidden" id="myPopup">
+        Do you want to place the order?
+        <div class="confirm">
+<!--           style="margin:20px;"-->
+            <a type="submit" class="btn btn-info left" id="place-order">Yes</a>
+            <a type="submit" class="btn btn-info right" id="cancel">Cancel</a>
+        </div>
+    </div>
+</div> 
+<div class="row">
+<div class="col-12">
+    <div class="container-fluid" style="padding:0;">
+    
+    <!-- NAVIGATION-->
+       
+        <nav  class="navbar navbar-expand-lg navbar-dark  bg-dark;" style="position:absolute;z-index:2;width:96%;height:60px;margin:60px 2%;border-radius: 5px;">
+     
+            <img src="images/logo2.png" alt="logo">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" style="padding:18px 20px;">Home </a>
+                    </li>
+                    
+                    <li class="nav-item active">
+                        <a class="nav-link" href="order.html" style="padding:18px 20px;">Order Online </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="padding:18px 20px;">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="padding:18px 20px;">Coupons</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+  
+    <header>
+        <div class="hero-image">
+            <div class="hero-text">
+                <h1>Got Cravings?</h1>
+                <h4>You Order We Deliver </h4>
+            </div>
+        </div>            
+    </header>
+
+    <section class="features"> 
+        <h3 class="text-center">Please enter your order details</h3>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form id="info-form">
+                    <fieldset id="delivery-info">
+                        <legend class="info">Delivery Information</legend>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="inputName">Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                <div class="err-msg" id="name-error"></div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputPhone">Phone Number</label>
+                                <input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">
+                                <div class="err-msg" id="phone-error"></div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputEmail">Email</label>
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+                                <div class="err-msg" id="email-error"></div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddressType">Address Type</label>
+                                <select id="inputAddressType" class="form-control">
+                                    <option selected value="house">House</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="business">Business</option>
+                                    <option value="campus">Campus</option>
+                                    <option value="hotel">Hotel</option>
+                                    <option value="dorm">Dorm</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="err-msg" id="addr-type-error"></div>
+                            </div>
+                            <div class='col-6'>
+                                <label for="inputRoomNum">Apartment/Suite/Room Number</label>
+                                <input type="text" class="form-control" id="inputRoomNum">
+                                <div class="err-msg" id="room-num-error"></div>
+                            </div>
+                            <div id="inputOtherAddrType" class='col-6 hidden'>
+                                <label for="inputOtherAddrType">Describe Address Type</label>
+                                <input type="text" class="form-control" >
+                                <div class="err-msg" id="other-addr-type-error"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <div class="err-msg" id="addr-error"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity">
+                                <div class="err-msg" id="city-error"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                <input type="text" class="form-control" id="inputState">
+                                <div class="err-msg" id="state-error"></div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip">
+                                <div class="err-msg" id="zip-error"></div>
+                            </div>
+                        </div>
+                        
+                        <a type="submit" class="btn btn-info" id="continue">Continue</a>    
+                        
+                    </fieldset>
+                    <hr/>
+                    <fieldset class="hidden" id="build-pizza">
+                        <legend class="build">Build Your Pizza</legend>
+                        <div class="form-row">
+                            <div class="col-9" id="build-panel">
+                                <div class="form-group col-12">
+                                    <label for="inputPizzaBase">Pizza Base</label>
+                                    <div class="row" id="inputPizzaBaseContainer">
+                                        <div class="col-3"><input type="radio" name="inputPizzaBase" value="handTossed" >Hand Tossed</div>
+                                        <div class="col-3"><input type="radio" name="inputPizzaBase" value="thinCrust" >Thin Crust</div>
+                                        <div class="col-3"><input type="radio" name="inputPizzaBase" value="newYorkStyle" >New York Style</div>
+                                        <div class="col-3"><input type="radio" name="inputPizzaBase" value="glutenFree" >Gluten Free</div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row hidden" id="sizeOptions">
+                                        <div class="form-group col-6">
+                                            <label for="inputPizzaSize">Pizza Size</label>
+                                            <select id="inputPizzaSize" class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row hidden" id="furtherOptions">
+                                        <div class="form-group col-3">
+                                            <label for="inputCheese">Cheese</label>
+                                            <select id="inputCheese" class="form-control">
+                                                <option value="Light Cheese" price="0.0">Light</option>
+                                                <option value="Normal Cheese" selected="selected" price="0.0">Normal</option>
+                                                <option value="Extra Cheese (2.99$)" price="2.99">Extra (2.99$)</option>
+                                                <option value="Double Cheese (3.99$)" price="3.99">Double (3.99$)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-3">
+                                            <label for="inputSauce">Sauce</label>
+                                            <select id="inputSauce" class="form-control">
+                                                <option value="Regular Tomato" price="0.0">Regular Tomato</option>
+                                                <option value="Hearty Tomato (0.99$)" price="0.99">Hearty Tomato (0.99$)</option>
+                                                <option value="BBQ (1.99$)" price="1.99">BBQ (1.99$)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label for="inputToppings">Toppings</label>
+                                            <div class="row" id="inputToppings">
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Pepperoni" >Pepperoni</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Sausage" >Sausage</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Peppers" >Peppers</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Ham" >Ham</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Bacon" >Bacon</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Salami" >Salami</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Olives" >Olives</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Jalapenos" >Jalapenos</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Pineapple" >Pineapple</div>
+                                                <div class="col-4"><input type="checkbox" name="inputToppings" value="Onion" >Onion</div>
+                                                <div class="col-6"><input type="checkbox" name="inputToppings" value="Mushrooms" >Mushrooms</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 total-rack" id="price-rack">
+                                <div class="col-12" id="totalPriceContainer">
+                                    <h5>Total Price: <span id="totalPrice">0.00</span></h5>
+                                </div>
+                                <div class="col-12" id="itemList">
+                                </div>
+                            </div>
+                        </div>
+                        <a type="submit" class="btn btn-info hidden" id="finished">Finished Building Pizza</a>
+                    </fieldset>
+                    <hr/>
+                    <fieldset id="billing-info" class="hidden">
+                        <legend class="billing">Billing Information</legend>
+                        <div class="form-group col-md-6">
+                                <input type="checkbox" name="sameAsDelivery" id="sameAsDelivery"> Same as delivery address?
+                            </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="inputName2">Name</label>
+                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                <div class="err-msg" id="name-error-2"></div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputPhone2">Phone Number</label>
+                                <input type="text" class="form-control" id="inputPhone2" placeholder="Phone Number">
+                                <div class="err-msg" id="phone-error-2"></div>
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="inputEmail2">Email</label>
+                                <input type="text" class="form-control" id="inputEmail2" placeholder="Email">
+                                <div class="err-msg" id="email-error-2"></div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputAddressType2">Address Type</label>
+                                <select id="inputAddressType2" class="form-control">
+                                    <option selected value="house">House</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="business">Business</option>
+                                    <option value="campus">Campus</option>
+                                    <option value="hotel">Hotel</option>
+                                    <option value="dorm">Dorm</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="err-msg" id="addr-type-error-2"></div>
+                            </div>
+                            <div class='col-6'>
+                                <label for="inputRoomNum2">Apartment/Suite/Room Number</label>
+                                <input type="text" class="form-control" id="inputRoomNum2">
+                                <div class="err-msg" id="room-num-error-2"></div>
+                            </div>
+                            <div class='col-6 hidden'>
+                                <label for="inputOtherAddrType2">Describe Address Type</label>
+                                <input type="text" class="form-control" >
+                                <div class="err-msg" id="other-addr-type-error-2"></div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputAddress2">Address</label>
+                            <input type="text" class="form-control" id="inputAddress2" placeholder="1234 Main St">
+                            <div class="err-msg" id="addr-error-2"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputCity2">City</label>
+                                <input type="text" class="form-control" id="inputCity2">
+                                <div class="err-msg" id="city-error-2"></div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState2">State</label>
+                                <input type="text" class="form-control" id="inputState2">
+                                <div class="err-msg" id="state-error-2"></div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip2">Zip</label>
+                                <input type="text" class="form-control" id="inputZip2">
+                                <div class="err-msg" id="zip-error-2"></div>
+                            </div>
+<!--
+                            <div class="form-group col-md-6">
+                                <input type="checkbox" name="sameAsDelivery" id="sameAsDelivery"> Same as delivery address?
+                            </div>
+-->
+                       
+                          </div>
+                        <legend class="card">Card Details</legend>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" class="form-control" id="cardNumber" placeholder="Credit Card Number">
+                                <div class="err-msg" id="card-error"></div>
+                            </div>
+                            <div class="form-group col-3">
+                                <label for="cvcNumber">CVC</label>
+                                <input type="text" class="form-control" id="cvcNumber" placeholder="CVC">
+                                <div class="err-msg" id="cvc-error"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="form-group col-md-3">
+                                <label for="expr-month">Expiration Month</label>
+                                <select id="expr-month" class="form-control">
+                                    <option selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <div class="err-msg" id="month-error"></div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="expr-year">Expiration Year</label>
+                                <select id="expr-year" class="form-control">
+                                    <option selected value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                                <div class="err-msg" id="year-error"></div>
+                            </div>
+                        </div>
+                    
+                            
+                        <a type="submit" class="btn btn-info"  href="index.html" id="continue">Done</a>
+                        
+                      
+
+
+<!--                       
+                        
+                       
+                    
